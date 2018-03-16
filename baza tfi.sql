@@ -71,15 +71,33 @@ data_utw date not null,
 typ_dostepu varchar(15) default 'uczestnik',
 foreign key (nr_uczestnika) references dane_uczestnika (nr_uczestnika)
 );
+select * from uczestnik_login;
+
+insert into uczestnik_login (nr_uczestnika,haslo,data_utw) values ('222111','12mako',curdate());
+insert into uczestnik_login (nr_uczestnika,haslo,data_utw) values ('222112','13maro',curdate());
+insert into uczestnik_login (nr_uczestnika,haslo,data_utw) values ('222113','14wosi',curdate());
+insert into uczestnik_login (nr_uczestnika,haslo,data_utw) values ('222114','15krzi',curdate());
+insert into uczestnik_login (nr_uczestnika,haslo,data_utw) values ('222115','16anby',curdate());
+insert into uczestnik_login (nr_uczestnika,haslo,data_utw) values ('222116','17szja',curdate());
+insert into uczestnik_login (nr_uczestnika,haslo,data_utw) values ('222117','18jali',curdate());
+insert into uczestnik_login (nr_uczestnika,haslo,data_utw) values ('222118','19maza',curdate());
+insert into uczestnik_login (nr_uczestnika,haslo,data_utw) values ('222119','20dour',curdate());
+insert into uczestnik_login (nr_uczestnika,haslo,data_utw) values ('222120','21tepa',curdate());
+insert into uczestnik_login (nr_uczestnika,haslo,data_utw) values ('222121','22majo',curdate());
+insert into uczestnik_login (nr_uczestnika,haslo,data_utw) values ('222122','23kaso',curdate());
+insert into uczestnik_login (nr_uczestnika,haslo,data_utw) values ('222123','24elwi',curdate());
+insert into uczestnik_login (nr_uczestnika,haslo,data_utw) values ('222124','25pibu',curdate());
 
 
 create table admin_login (
-id_admin int primary key,
+id_admin int primary key auto_increment,
 a_login varchar(10) not null,
 a_haslo varchar(15) not null,
 data_utw date not null,
 typ_dostepu varchar(15) default 'admin'
 );
+insert into admin_login (a_login,a_haslo,data_utw) values ('jzych','baza2018',curdate());
+insert into admin_login (a_login,a_haslo,data_utw) values ('admin2','test2018',curdate());
 
 use baza_tfi;
 
@@ -270,11 +288,11 @@ FROM
 # z filtrowaniem po statusie funduszu: where status_fund='Aktywny','Zamkniety';
 
 
-# wszystkie zlecenia
+# wszystkie zlecenia malejąco
 select * from zlecenia
 order by Data_zlec desc;
 
-# lub wszystkie zlecenia po statusie zlecenia
+# lub wszystkie zlecenia po statusie zlecenia (malejąco)
 select * from zlecenia
 where Status_zlec='Odrzucone'
 order by Data_zlec desc; # 'Przetworzone','Odrzucone'
@@ -294,7 +312,7 @@ WHERE
 
 
 use baza_tfi;
-
+# TRIGGERY
 # po uaktualnieniu danych osobowych tworzy się zlecenie 'Zmiana danych' do tabeli zlecenia
 delimiter $$
 create trigger zm_danych
